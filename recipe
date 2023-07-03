@@ -1,0 +1,18 @@
+
+namespace RecipeApp
+{
+    internal class Recipes
+    {
+        internal void DisplayRecipe()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void EnterRecipe()
+        {
+            throw new NotImplementedException();
+        }
+
+        recipe.EnterRecipe();
+    }
+}
