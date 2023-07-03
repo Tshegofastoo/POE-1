@@ -1,0 +1,31 @@
+<Window x:Class="RecipeApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecipeApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="Enter a new recipe" Click="EnterRecipe_Click"/>
+            <Button Content="Display the recipe" Click="DisplayRecipe_Click"/>
+            <Button Content="Calculate total calories" Click="CalculateTotalCalories_Click"/>
+            <Button Content="Scale the recipe" Click="ScaleRecipe_Click"/>
+            <Button Content="Reset quantities" Click="ResetQuantities_Click"/>
+            <Button Content="Clear the recipe" Click="ClearRecipe_Click"/>
+            <Button Content="Filter the recipes" Click="FilterRecipes_Click"/>
+            <Button Content="Exit" Click="Exit_Click"/>
+        </StackPanel>
+
+        <ListBox Grid.Row="1" Name="recipeListBox" Margin="10" DisplayMemberPath="Name"/>
+        <Image HorizontalAlignment="Left" Height="279" Margin="129,57,0,0" Grid.Row="1" VerticalAlignment="Top" Width="534" Source="/app pic.jpg" Stretch="Fill"/>
+
+
+    </Grid>
+</Window>
