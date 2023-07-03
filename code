@@ -1,0 +1,123 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace RecipeApp
+{
+    public partial class MainWindow : Window
+    {
+        private List<Recipes> recipes = new List<Recipes>();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+private void EnterRecipe_Click(object sender, RoutedEventArgs e)
+        {
+            Recipes recipe = new Recipes();
+            NewMethod(recipe);
+            recipes.Add(recipe);
+            recipeListBox.ItemsSource = recipes;
+        }
+
+        private static void NewMethod(Recipes recipe)
+        {
+            recipe.EnterRecipe();
+        } 
+ private void DisplayRecipe_Click(object sender, RoutedEventArgs e)
+        {
+            Recipes selectedRecipe = recipeListBox.SelectedItem as Recipes;
+            if (selectedRecipe != null)
+            {
+                selectedRecipe.DisplayRecipe();
+
+            }
+        }
+private void CalculateTotalCalories_Click(object sender, RoutedEventArgs e)
+        {
+            Recipe selectedRecipe = recipeListBox.SelectedItem as Recipe;
+            if (selectedRecipe != null)
+            {
+                int totalCalories = selectedRecipe.CalculateTotalCalories();
+                MessageBox.Show("Total Calories: " + totalCalories, "Recipe App", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+private void ScaleRecipe_Click(object sender, RoutedEventArgs e)
+        {
+            Recipe selectedRecipe = recipeListBox.SelectedItem as Recipe;
+            if (selectedRecipe != null)
+            {
+                string scaleFactorText = Microsoft.VisualBasic.Interaction.InputBox(" Please enter the scale factor (0.5, 2, or 3):", "Recipe App", "1");
+                if (double.TryParse(scaleFactorText, out double scaleFactor))
+                {
+                    selectedRecipe.ScaleRecipe(scaleFactor);
+                    MessageBox.Show("Recipe scaled successfully.", "Recipe App", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid scale factor. Please try again.", "Recipe App", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+ private void ResetQuantities_Click(object sender, RoutedEventArgs e)
+        {
+            Recipe selectedRecipe = recipeListBox.SelectedItem as Recipe;
+            if (selectedRecipe != null)
+            {
+                selectedRecipe.ResetQuantities();
+                MessageBox.Show("Quantities reset successfully.", "Recipe App", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void ClearRecipe_Click(object sender, RoutedEventArgs e, Recipe selectedRecipe)
+        {
+            //Recipe selectedRecipe = recipeListBox.SelectedItem as Recipe;
+            if (selectedRecipe != null)
+            {
+                //recipes.Remove(selectedRecipe);
+                recipeListBox.ItemsSource = null;
+                recipeListBox.ItemsSource = recipes;
+                MessageBox.Show("Recipe deleted successfully.", "Recipe App", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void FilterRecipes_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+    }
+
+    internal class Recipe
+    { 
+internal int CalculateTotalCalories()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void ResetQuantities()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void ScaleRecipe(double scaleFactor)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
